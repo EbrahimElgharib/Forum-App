@@ -6,3 +6,15 @@
 <h3>{{object.content}}</h3>
 <h3>{{object.created_at}}</h3>
 <h3>{{object.tags.all}}</h3>
+
+
+<hr>
+
+<h2>All Answers</h2>
+
+{% for answer in answers %}
+<ul>
+    <li>{{answer.answer}}</li>
+</ul>
+
+{% endfor %}
