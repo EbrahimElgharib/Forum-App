@@ -1,22 +1,111 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Question-Details</title>
+    <!-- Bootstrap.css CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+        integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container">
+                <a class="navbar-brand" href="#">Forum</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="http://127.0.0.1:8000/questions/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:8000/questions/add">Add-Q</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container my-4">
+
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <h5 class="card-title">َQuestion Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{object}}</h5>
+
+                            <p class="card-text">{{object.content}}</p>
+                        </div>
+                        <div class="card-footer text-body-secondary">
+                            {% for tag in object.tags.all %}
+                            <span class="badge rounded-pill bg-success">{{tag}}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="card-footer text-body-secondary">{{object.created_at}}</div>
+                        <div class="card-footer text-body-secondary">{{object.author}}</div>
+                        <div class="card-footer text-body-secondary">
+                            <a href="{{object.pk}}/edit" class="btn btn-primary">Edit</a>
+                            <a href="{{object.pk}}/delete" class="btn btn-danger">Delete</a>
+                        </div>
 
 
-<h1>َQ Details</h1>
+                        <div class="card-footer pt-4 bg-info">
+                            <h5>All Answers</h5>
+                            <ul class="list-group list-group-flush">
+                                {% for answer in answers %}
+                                <li class="list-group-item bg-warning">{{answer.answer}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 
 
-<h3>{{object}}</h3>
-<h3>{{object.author}}</h3>
-<h3>{{object.content}}</h3>
-<h3>{{object.created_at}}</h3>
-<h3>{{object.tags.all}}</h3>
+    <!-- ################################################################## -->
+    <!-- Bootstrap-bundle.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
+        integrity="sha512-VK2zcvntEufaimc+efOYi622VN5ZacdnufnmX7zIhCPmjhKnOi9ZDMtg1/ug5l183f19gG1/cBstPO4D8N/Img=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
 
-
-<hr>
-
-<h2>All Answers</h2>
-
-{% for answer in answers %}
-<ul>
-    <li>{{answer.answer}}</li>
-</ul>
-
-{% endfor %}
+</html>
