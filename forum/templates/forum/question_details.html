@@ -10,6 +10,12 @@
         integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    {# Load the tag library #}
+    {% load bootstrap5 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
 
 <body>
@@ -83,7 +89,7 @@
                         </div>
 
 
-                        <div class="card-footer pt-4 bg-info">
+                        <div class="card-footer py-4">
                             <h5>All Answers</h5>
                             <ul class="list-group list-group-flush">
                                 {% for answer in answers %}
@@ -91,6 +97,23 @@
                                 {% endfor %}
                             </ul>
                         </div>
+
+                        <div class="py-4">
+                            <div class="card-header">
+                                <h5 class="card-title">َAdd Answer</h5>
+                            </div>
+                            <form action="" method="post" class="bg-info px-5">
+
+                                {% csrf_token %}
+                                {% bootstrap_form answer_form %}
+                                {% buttons %}
+                                <button type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                                {% endbuttons %}
+                            </form>
+                        </div>
+
 
                     </div>
                 </div>
